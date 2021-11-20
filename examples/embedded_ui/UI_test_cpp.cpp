@@ -30,10 +30,10 @@ public:
 		// Register resets
 	    RESET_FAKE(SYSTEM_register_irq);
 
-	    RESET_FAKE(DISPLAY_init)
-	    RESET_FAKE(DISPLAY_clear)
-	    RESET_FAKE(DISPLAY_output)
-	    RESET_FAKE(DISPLAY_get_line_capacity)
+	    RESET_FAKE(DISPLAY_init);
+	    RESET_FAKE(DISPLAY_clear);
+	    RESET_FAKE(DISPLAY_output);
+	    RESET_FAKE(DISPLAY_get_line_capacity);
 	    RESET_FAKE(DISPLAY_get_line_insert_index);
 
 	    RESET_FAKE(button_press_cbk);

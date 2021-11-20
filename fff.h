@@ -48,9 +48,9 @@ SOFTWARE.
     FUNCNAME##_fake.custom_fake_seq_len = ARRAY_LEN;
 
 /* Defining a function to reset a fake function */
-#define RESET_FAKE(FUNCNAME) { \
+#define RESET_FAKE(FUNCNAME) do { \
     FUNCNAME##_reset(); \
-} \
+} while(0) \
 
 
 #define DECLARE_ARG(type, n, FUNCNAME) \
@@ -136,9 +136,10 @@ FFF_END_EXTERN_C
         fff_globals_t fff; \
     FFF_END_EXTERN_C
 
-#define FFF_RESET_HISTORY() \
+#define FFF_RESET_HISTORY() do { \
     fff.call_history_idx = 0; \
-    memset(fff.call_history, 0, sizeof(fff.call_history));
+    memset(fff.call_history, 0, sizeof(fff.call_history)); \
+    } while (0)
 
 #define REGISTER_CALL(function) \
     if(fff.call_history_idx < FFF_CALL_HISTORY_LEN) \

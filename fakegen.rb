@@ -83,11 +83,11 @@ end
 def define_reset_fake_macro
   puts
   putd "/* Defining a function to reset a fake function */"
-  putd_backslash "#define RESET_FAKE(FUNCNAME) {"
+  putd_backslash "#define RESET_FAKE(FUNCNAME) do {"
   indent {
     putd_backslash "FUNCNAME##_reset();"
   }
-  putd_backslash "}"
+  putd_backslash "} while(0)"
   puts
 end
 
@@ -514,10 +514,11 @@ def define_fff_globals
     putd "FFF_END_EXTERN_C"
   }
   puts
-  putd_backslash "#define FFF_RESET_HISTORY()"
+  putd_backslash "#define FFF_RESET_HISTORY() do {"
   indent {
     putd_backslash "fff.call_history_idx = 0;"
-    putd "memset(fff.call_history, 0, sizeof(fff.call_history));"
+    putd_backslash "memset(fff.call_history, 0, sizeof(fff.call_history));"
+    putd "} while (0)"
   }
   puts
   putd_backslash "#define REGISTER_CALL(function)"
